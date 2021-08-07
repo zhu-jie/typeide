@@ -1,4 +1,11 @@
+# Python #
 *.py[cod]
 *$py.class
 *.swp
 *.sqlite3
+
+# Djanog #
+*.log
+*.pot
+*.pyc
+__pycache__
