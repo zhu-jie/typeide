@@ -28,7 +28,7 @@ class Tag(models.Model):
         (STATUS_NORMAL, '正常'),
         (STATUS_DELETE, '删除'),
     )
-
+    
     name = models.CharField(max_length=10, verbose_name="名称")
     status = models.PositiveIntegerField(default=STATUS_NORMAL, 
                                          choices=STATUS_ITEMS, verbose_name="状态")
