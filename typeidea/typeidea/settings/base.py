@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
+    'typeidea',
     'blog.apps.BlogConfig',
     'config.apps.ConfigConfig',
     'comment.apps.CommentConfig',
