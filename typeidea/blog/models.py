@@ -1,6 +1,7 @@
 import mistune
 from django.contrib.auth.models import User
 from django.db import models
+from django.utils.functional import cached_property
 
 # Create your models here.
 
@@ -125,3 +126,7 @@ class Post(models.Model):
     def latest_posts(cls):
         queryset = cls.objects.filter(status=cls.STATUS_NORMAL)
         return queryset
+
+    @cached_property
+    def tags(self):
+        return ','.join(self.tag.values_list('name', flat=True))

@@ -17,6 +17,7 @@ Including another URLconf
 from django.conf import urls
 from django.conf.urls import url
 from django.contrib import admin
+from django.contrib import sitemaps
 from .custom_site import custom_site
 # from blog.views import post_list, post_detail # 禁用原来的函数视图
 from config.views import LinkListView
@@ -24,6 +25,9 @@ from comment.views import CommentView
 from blog.views import (
     IndexView, CategoryView, TagView, PostDetailView, SearchView, AuthorView
 )
+from django.contrib.sitemaps import views as sitemap_views
+from blog.rss import LatestPostFeed
+from blog.sitemap import PostSitemap
 
 urlpatterns = [
     # 类视图实现
@@ -35,6 +39,8 @@ urlpatterns = [
     url(r'^search/$', SearchView.as_view(), name='search'),
     url(r'^author/(?P<owner_id>\d+)/$', AuthorView.as_view(), name='author'),
     url(r'^comment/$', CommentView.as_view(), name='comment'),
+    url(r'^rss|feed/', LatestPostFeed(), name='rss'),
+    url(r'^sitemap\.xml$', sitemap_views.sitemap, {'sitemaps': {'posts': PostSitemap}}),
     # 业务，函数视图实现
     # url(r'^$', post_list, name='index'),
     # url(r'^category/(?P<category_id>\d+)/$', post_list, name='category-list'),
