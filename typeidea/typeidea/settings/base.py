@@ -26,12 +26,15 @@ SECRET_KEY = '8&c0q7x@$)f%4ha5or@=m_&$eo_xq%3%gf_358+d&-6s=1@^al'
 # DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-
+XADMIN_TITLE = "Zhu's博客管理后台"
+XADMIN_FOOTER_TITLE = 'power by cnjie.net'
 
 # Application definition
 
 INSTALLED_APPS = [
     'typeidea',
+    'xadmin',
+    'crispy_forms',
     'blog.apps.BlogConfig',
     'config.apps.ConfigConfig',
     'comment.apps.CommentConfig',

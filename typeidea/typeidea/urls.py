@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
+import xadmin
 from django.conf.urls import url
 from django.contrib import admin
 from .custom_site import custom_site
@@ -46,5 +47,5 @@ urlpatterns = [
     # url(r'^links/$', links),
     # 管理后台
     url(r'^super_admin/', admin.site.urls),
-    url(r'^admin/', custom_site.urls),
+    url(r'^admin/', xadmin.site.urls, name='xadmin'),
 ]
