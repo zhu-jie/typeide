@@ -14,9 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 import xadmin
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
 from .custom_site import custom_site
+from django.conf import settings
+from django.conf.urls.static import static
 # from blog.views import post_list, post_detail # 禁用原来的函数视图
 from config.views import LinkListView
 from comment.views import CommentView
@@ -27,6 +29,8 @@ from django.contrib.sitemaps import views as sitemap_views
 from blog.rss import LatestPostFeed
 from blog.sitemap import PostSitemap
 from .autocomplete import CategoryAutocomplete, TagAutocomplete
+
+
 urlpatterns = [
     # 类视图实现
     url(r'^$', IndexView.as_view(), name='index'),
@@ -41,6 +45,7 @@ urlpatterns = [
     url(r'^sitemap\.xml$', sitemap_views.sitemap, {'sitemaps': {'posts': PostSitemap}}),
     url(r'^category-autocomplete/$', CategoryAutocomplete.as_view(), name='category-autocomplete'),
     url(r'^tag-autocomplete/$', TagAutocomplete.as_view(), name='tag-autocomplete'),
+    url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     # 业务，函数视图实现
     # url(r'^$', post_list, name='index'),
     # url(r'^category/(?P<category_id>\d+)/$', post_list, name='category-list'),
@@ -50,4 +55,4 @@ urlpatterns = [
     # 管理后台
     url(r'^super_admin/', admin.site.urls),
     url(r'^admin/', xadmin.site.urls, name='xadmin'),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
