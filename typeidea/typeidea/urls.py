@@ -26,7 +26,7 @@ from blog.views import (
 from django.contrib.sitemaps import views as sitemap_views
 from blog.rss import LatestPostFeed
 from blog.sitemap import PostSitemap
-
+from .autocomplete import CategoryAutocomplete, TagAutocomplete
 urlpatterns = [
     # 类视图实现
     url(r'^$', IndexView.as_view(), name='index'),
@@ -39,6 +39,8 @@ urlpatterns = [
     url(r'^comment/$', CommentView.as_view(), name='comment'),
     url(r'^rss|feed/', LatestPostFeed(), name='rss'),
     url(r'^sitemap\.xml$', sitemap_views.sitemap, {'sitemaps': {'posts': PostSitemap}}),
+    url(r'^category-autocomplete/$', CategoryAutocomplete.as_view(), name='category-autocomplete'),
+    url(r'^tag-autocomplete/$', TagAutocomplete.as_view(), name='tag-autocomplete'),
     # 业务，函数视图实现
     # url(r'^$', post_list, name='index'),
     # url(r'^category/(?P<category_id>\d+)/$', post_list, name='category-list'),

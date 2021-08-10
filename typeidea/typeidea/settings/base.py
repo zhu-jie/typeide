@@ -35,6 +35,8 @@ INSTALLED_APPS = [
     'typeidea',
     'xadmin',
     'crispy_forms',
+    'dal',
+    'dal_select2',
     'blog.apps.BlogConfig',
     'config.apps.ConfigConfig',
     'comment.apps.CommentConfig',
