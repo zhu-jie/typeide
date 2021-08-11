@@ -1,6 +1,8 @@
+import mistune
 from django.template.loader import render_to_string
 from django.contrib.auth.models import User
 from django.db import models
+
 
 # Create your models here.
 
@@ -49,7 +51,7 @@ class SideBar(models.Model):
     title = models.CharField(max_length=50, verbose_name="标题")
     display_type = models.PositiveIntegerField(default=1, choices=SIDE_TYPE,
                                                verbose_name="展示类型")
-    content = models.CharField(max_length=500, blank=True, verbose_name="内容",
+    content = models.TextField(max_length=500, blank=True, verbose_name="内容",
                                help_text="如果设置的不是HTML类型，可为空")
     status = models.PositiveIntegerField(default=STATUS_SHOW, 
                                          choices=STATUS_ITEMS, verbose_name="状态")                                   
